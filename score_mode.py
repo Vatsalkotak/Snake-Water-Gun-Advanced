@@ -16,15 +16,15 @@ def score_mode():
           
 
         computer = random.choice(["S", "W", "G"])
-        # print(f"Computer Choose: {computer}")
+        print(f"Computer Choose: {computer}")
 
-        if(score_user or score_computer == 3):
+        if(score_user == 3 or score_computer == 3):
           
             if(score_user == 3):
                     print("You Win The Game!!! Congratulations!!!")
                     print("Want You Play Again? Y OR N ")
                     user_d = input("Enter Your Decision: ")
-                    user_decision = user.capitalize()
+                    user_decision = user_d.capitalize()
                     if(user_decision == "Y"):
                       score_computer = 0
                       score_user = 0
