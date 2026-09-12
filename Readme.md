@@ -1,21 +1,20 @@
 # 🐍💧🔫 Snake-Water-Gun (Advanced Edition)
 
 ## 📝 Description
-While Snake-Water-Gun (or Rock-Paper-Scissors) is a classic beginner project every programmer builds when learning functions, this repository takes a step further. I built this while following the CodeWithHarry "Ultimate Python Course", but instead of directly following the tutorial, I engineered the logic entirely on my own before watching the solution. 
-
-Beyond the classic game, I have focused on building custom features and maintaining safe code backups.
+This is an advanced CLI version of the classic Snake-Water-Gun (Rock-Paper-Scissors) game. Built from scratch with custom logic, it features a complete Main Menu, robust error handling, and hidden developer cheat codes. 
 
 ## ✨ Features
-* **Normal Mode:** The classic quick-play game with robust user input handling (case-insensitivity and error catching).
-* **Score Mode:** A custom-built "Best of 3" tracking system that keeps round-by-round scores and declares a final winner.
-* **Cheat Mode:** *(Coming Soon)*
+* **Main Menu System:** Navigate easily between different game modes or exit the application.
+* **Normal Mode:** The classic quick-play game with a post-game statistics tracker (Total plays, Wins, Losses, Draws).
+* **Score Mode:** A custom "Best of 3" tracking system that automatically resets upon completion.
+* **Developer Cheat Mode:** A hidden backdoor! Press 'C' during input to reveal the computer's choice before making your move. Press 'N' to revert to normal play.
+* **Input Validation:** Prevents crashes using `.isnumeric()` and case-insensitive `.capitalize()` checks.
 
-## 📂 Project Structure
-The main game runs entirely from a single file, while keeping separated files as safe backups for testing logic:
-* `main.py` - The primary entry point. This contains the main menu, Normal Mode, and Score Mode all integrated together.
-* `normal_mode.py` - A backup/testing file containing only the standalone normal mode logic.
-* `score_mode.py` - A backup/testing file containing only the standalone score tracking logic.
-* **Note:** Please test new logic in the individual separated files before merging them into `main.py` to prevent unexpected errors.
+## 📂 Project Architecture
+The project is built with a modular approach, keeping the main runner clean while preserving backup logic:
+* `main.py` - The central runner containing the Main Menu and integrated game modes.
+* `normal_cheat_mode.py` / `score_cheat_mode.py` - Core logic files with the active cheat switch.
+* `normal_mode.py` / `score_mode.py` - Safe backup files containing the classic logic without the cheat integration.
 
 ## 👨‍💻 Author
 **Vatsal Kotak**
