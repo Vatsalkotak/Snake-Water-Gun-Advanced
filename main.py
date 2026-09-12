@@ -33,6 +33,7 @@ def normal_cheat_mode():
           print(f"You Win {score_user} Times &")
           print(f"Computer Wins {score_computer} Times &")
           print(f"{total_draw} Times Draw The Game.")
+          input("Press Any Key To Close the Game")
           break
 
         if(computer == user_choice):
@@ -134,7 +135,8 @@ def score_cheat_mode():
 
        
         if(user_choice == "E"):
-          print("Thanks")
+          print("Thank You For Playing Game!")
+          input("Press Any Key To Exit the Application.")
           break
 
           
@@ -194,37 +196,40 @@ def score_cheat_mode():
 # Main Function
 
 def main():
-    print("\t----->Main Menu<-----")
-    print("\"S\" For Snake, \"W\" For Water & \"G\" For Gun")
-    print("Choose Between 'S','W' & 'G'")
-    print("Press 'E' For Exit The Game")
-    print("Press 'M' For Back in Main Menu")
-    print("Choose Mode: ")
-    print("1. Normal Mode")
-    print("2. Score Mode")
-    print("Enter 1 For Normal Mode.")
-    print("Enter 2 For Score Mode")
+    while 1:
 
-    choose_mode = input("Enter The 1 OR 2: ").upper()
-
-    if(choose_mode == "E"):
-        print("Thank You")
-        return
-
-    elif(choose_mode == "M"):
-        main()
+        print("\t----->Main Menu<-----")
+        print("\"S\" For Snake, \"W\" For Water & \"G\" For Gun")
+        print("Choose Between 'S','W' & 'G'")
+        print("Press 'E' For Exit The Game")
+        print("Press 'M' For Back in Main Menu")
+        print("Choose Mode: ")
+        print("1. Normal Mode")
+        print("2. Score Mode")
+        print("Enter 1 For Normal Mode.")
+        print("Enter 2 For Score Mode")
         
-    elif(choose_mode.isnumeric()):
-        choose_mode1 = int(choose_mode)
-
-        if(choose_mode1 == 1):
-            normal_cheat_mode()
-        elif(choose_mode1 == 2):
-            score_cheat_mode()
+        choose_mode = input("Enter The 1 OR 2: ").upper()
+        
+        if(choose_mode == "E"):
+            print("Thank You")
+            input("Press Any Key To Exit the Application.")
+            break
+        
+        elif(choose_mode == "M"):
+            continue
+                
+        elif(choose_mode.isnumeric()):
+            choose_mode1 = int(choose_mode)
+        
+            if(choose_mode1 == 1):
+                normal_cheat_mode()
+            elif(choose_mode1 == 2):
+                score_cheat_mode()
+            else:
+                print("Invalid Input! Please Enter 1 OR 2")
         else:
-            print("Invalid Input! Please Enter 1 OR 2")
-    else:
-        print("Something Went Wrong!")
+            print("Something Went Wrong!")
 
    
 main()
