@@ -3,6 +3,38 @@ from datetime import datetime
 from colorama import init, Fore, Style
 init(autoreset=True)
 
+import os
+import sys
+
+# 1. DYNAMIC PATH DETECTOR (Pata lagao file kahan run ho rahi hai)
+if getattr(sys, 'frozen', False):
+    # Agar code .exe ban chuka hai aur chal raha hai
+    base_path = os.path.dirname(sys.executable)
+else:
+    # Agar code VS Code mein .py file ki tarah chal raha hai
+    base_path = os.path.dirname(os.path.abspath(__file__))
+
+# 2. FOLDER CREATE KARNA (Usi location par jahan .exe hai)
+folder_name = "Game_Data"
+folder_path = os.path.join(base_path, folder_name)
+
+# Agar Game_Data naam ka folder nahi hai, toh naya banao
+if not os.path.exists(folder_path):
+    os.makedirs(folder_path)
+
+# 3. FILES KA EXACT PATH SET KARNA
+file_high_score = os.path.join(folder_path, "high_score.txt")
+file_logs = os.path.join(folder_path, "logs.txt")
+
+# 4. EMPTY FILES CREATE KARNA (Taaki pehli baar run hone par error na aaye)
+if not os.path.exists(file_high_score):
+    with open(file_high_score, "w") as f:
+        f.write("") # Khali file bana do
+
+if not os.path.exists(file_logs):
+    with open(file_logs, "w") as f:
+        f.write("") # Khali file bana do
+
 yourdict = {"S": "Snake", "W": "Water", "G" : "Gun"}
 
 # Normal Cheat Mode: 
@@ -14,7 +46,7 @@ def normal_cheat_mode():
     score_computer = 0
     total_draw = 0
     total_score = 0
-    with open("high_score.txt") as f:
+    with open(file_high_score) as f:
         high_score = f.read()
     is_cheat = False
     mode = "Normal Mode"
@@ -46,7 +78,7 @@ def normal_cheat_mode():
           print(Fore.BLUE + f"Computer Wins {Fore.YELLOW}{score_computer} {Fore.BLUE}Times &")
           print(Fore.BLUE + f"{Fore.YELLOW}{total_draw} {Fore.BLUE}Times Draw The Game.")
           print(high_score_func(score_user))
-          with open("high_score.txt", "r") as f:
+          with open(file_high_score, "r") as f:
               t_high_score = f.read()
           logs_func(mode, score_user, score_computer, total_draw, t_high_score)
           break
@@ -107,7 +139,7 @@ def normal_cheat_mode():
 #  High-Score Function
 
 def high_score_func(score_user):
-    with open("high_score.txt", "r") as f:
+    with open(file_high_score, "r") as f:
         high_score = f.read()
 
     if(high_score != ""):
@@ -116,12 +148,12 @@ def high_score_func(score_user):
         high_score = 0
 
     if(score_user > high_score):
-        with open("high_score.txt" , "w") as f:
+        with open(file_high_score , "w") as f:
             f.write(str(score_user))
 
         return Fore.GREEN + f"Congratulations!!! You Braked the High-Score,\nYour New High-Score is: {Fore.YELLOW}{score_user}"
 
-    with open("high_score.txt", "r") as f:
+    with open(file_high_score, "r") as f:
         old_high_score = f.read()
     
     return Fore.CYAN + f"High-Score Not Braked, Your Old High-Score is: {Fore.YELLOW}{old_high_score}"
@@ -134,7 +166,7 @@ def logs_func(mode, score_user, score_computer, total_draw, high_score):
 
     time_stamp = f"[{current_time}] Mode: {mode} | You Scored: {score_user} | Computer Scored: {score_computer} | Total Draw: {total_draw} | High-Score: {high_score}"
 
-    with open("logs.txt", "a") as f:
+    with open(file_logs, "a") as f:
         f.write(time_stamp + "\n\n")
 
     return time_stamp
@@ -275,7 +307,7 @@ def score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, 
 
     time_stamp = f"[{current_time}] Mode: {mode} | You Scored: {score_user} | Computer Scored: {score_computer} | Total Draw: {total_draw} | Total Rounds Played: {total_rounds} | Rounds Won By User: {user_win_rounds}"
 
-    with open("logs.txt", "a") as f:
+    with open(file_logs, "a") as f:
         f.write(time_stamp + "\n\n")
 
     return time_stamp
@@ -283,7 +315,7 @@ def score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, 
 # Show History Function For Show Game Logs
 
 def show_history():
-    with open("logs.txt", "r") as f:
+    with open(file_logs, "r") as f:
         history = f.read()
     print(Fore.YELLOW + history)
 

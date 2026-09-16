@@ -1,7 +1,5 @@
 import random
 from datetime import datetime
-from colorama import init, Fore, Style
-init(autoreset=True)
 
 yourdict = {"S": "Snake", "W": "Water", "G" : "Gun"}
 
@@ -31,20 +29,20 @@ def normal_cheat_mode():
         # print(f"Computer Choose: {yourdict[computer]}")
 
         if(is_cheat == True):
-            print(Fore.MAGENTA + f"[Cheat Mode Active] Computer Choose: {yourdict[computer]}")
+            print(f"[Cheat Mode Active] Computer Choose: {yourdict[computer]}")
             
-        user = input(Fore.CYAN + "Enter Your Choice: ")
+        user = input("Enter Your Choice: ")
         user_choice = user.capitalize()
 
         if("S" in user_choice or "G" in user_choice or "W" in user_choice):
             total += 1 
 
         if(user_choice == "E"):
-          print(Fore.BLUE + "Thank You For Playing The Game!")
-          print(Fore.BLUE + f"You Choose Total {Fore.YELLOW}{total} {Fore.BLUE}Times,")
-          print(Fore.BLUE + f"You Win {Fore.YELLOW}{score_user} {Fore.BLUE}Times &")
-          print(Fore.BLUE + f"Computer Wins {Fore.YELLOW}{score_computer} {Fore.BLUE}Times &")
-          print(Fore.BLUE + f"{Fore.YELLOW}{total_draw} {Fore.BLUE}Times Draw The Game.")
+          print("Thank You For Playing The Game!")
+          print(f"You Choose Total {total} Times,")
+          print(f"You Win {score_user} Times &")
+          print(f"Computer Wins {score_computer} Times &")
+          print(f"{total_draw} Times Draw The Game.")
           print(high_score_func(score_user))
           with open("high_score.txt", "r") as f:
               t_high_score = f.read()
@@ -52,44 +50,44 @@ def normal_cheat_mode():
           break
 
         if(computer == user_choice):
-            print(Fore.CYAN + f"You Choose {Fore.YELLOW}{yourdict[user_choice]} {Fore.MAGENTA}& {Fore.RED}Computer Choose {Fore.YELLOW}{yourdict[computer]}")
-            print(Fore.YELLOW + "Game is Draw")
+            print(f"You Choose {yourdict[user_choice]} & Computer Choose {yourdict[computer]}")
+            print("Game is Draw")
             total_draw += 1
         else:
             if(computer == "S") and (user_choice == "W"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-                print(Fore.RED + "You Lose The Game!")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+                print("You Lose The Game!")
                 score_computer += 1
 
             elif(computer == "W") and (user_choice == "S"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-                print(Fore.GREEN + "You Win The Game! ")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+                print("You Win The Game! ")
                 score_user += 1
                 total_score += 1
-                print(Fore.CYAN + f"Your Total Score is: {Fore.YELLOW}{total_score}")
+                print(f"Your Total Score is: {total_score}")
 
             elif(computer == "G") and (user_choice == "S"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-                print(Fore.RED + "You Lose The Game! ")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+                print("You Lose The Game! ")
                 score_computer += 1
 
             elif(computer == "S") and (user_choice == "G"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-                print(Fore.GREEN + "You Win The Game!")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+                print("You Win The Game!")
                 score_user += 1
                 total_score += 1
-                print(Fore.CYAN + f"Your Total Score is: {Fore.YELLOW}{total_score}")
+                print(f"Your Total Score is: {total_score}")
 
             elif(computer == "G") and (user_choice == "W"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-                print(Fore.GREEN + "You Win The Game!")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+                print("You Win The Game!")
                 score_user += 1
                 total_score += 1
-                print(Fore.CYAN + f"Your Total Score is: {Fore.YELLOW}{total_score}")
+                print(f"Your Total Score is: {total_score}")
 
             elif(computer == "W") and (user_choice == "G"):
-             print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
-             print(Fore.RED + "You Lose The Game!")
+             print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
+             print("You Lose The Game!")
              score_computer += 1
 
             elif("C" in user_choice):
@@ -102,7 +100,7 @@ def normal_cheat_mode():
                 show_history()
 
             else:
-                print(Fore.YELLOW + "Something Went Wrong!")
+                print("Something Went Wrong!")
 
 #  High-Score Function
 
@@ -119,12 +117,12 @@ def high_score_func(score_user):
         with open("high_score.txt" , "w") as f:
             f.write(str(score_user))
 
-        return Fore.GREEN + f"Congratulations!!! You Braked the High-Score,\nYour New High-Score is: {Fore.YELLOW}{score_user}"
+        return f"Congratulations!!! You Braked the High-Score,\nYour New High-Score is {score_user}"
 
     with open("high_score.txt", "r") as f:
         old_high_score = f.read()
     
-    return Fore.CYAN + f"High-Score Not Braked, Your Old High-Score is: {Fore.YELLOW}{old_high_score}"
+    return f"High-Score Not Braked, Your Old High-Score is: {old_high_score}"
 
 # logs save function for normal mode
 
@@ -163,7 +161,7 @@ def score_cheat_mode():
         # print(f"Computer Choose: {yourdict[computer]}")
 
         if(is_cheat == True):
-            print(Fore.MAGENTA + f"[Cheat Mode Active] Computer choose: {yourdict[computer]}")
+            print(f"[Cheat Mode Active] Computer choose: {yourdict[computer]}")
 
         if(score_user == 3 or score_computer == 3):
 
@@ -172,9 +170,9 @@ def score_cheat_mode():
             if(score_user == 3):
                     user_won_rounds += 1
 
-                    print(Fore.GREEN + "You Win The Game!!! Congratulations!!!")
-                    print(Fore.CYAN + "Want You Play Again? Y OR N ")
-                    user_d = input(Fore.CYAN + "Enter Your Decision: ")
+                    print("You Win The Game!!! Congratulations!!!")
+                    print("Want You Play Again? Y OR N ")
+                    user_d = input("Enter Your Decision: ")
                     user_decision = user_d.capitalize()
                     if(user_decision == "Y"):
                       score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, user_won_rounds)
@@ -183,15 +181,15 @@ def score_cheat_mode():
                       total_draw = 0
                       is_cheat = False
                     else:
-                      print(Fore.GREEN + "Thank You For Playing!!!")
+                      print("Thank You For Playing!!!")
                       score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, user_won_rounds)
                       break
 
             elif(score_computer == 3):
                 is_cheat = False
-                print(Fore.RED + "Sorry, computer is Win The Game!!! Batter Luck Next Time!!! ")
-                print(Fore.CYAN + "Want You Play Again? Y OR N ")
-                user_d = input(Fore.CYAN + "Enter Your Decision: ")
+                print("Sorry, computer is Win The Game!!! Batter Luck Next Time!!! ")
+                print("Want You Play Again? Y OR N ")
+                user_d = input("Enter Your Decision: ")
                 user_decision = user_d.capitalize()
                 if(user_decision == "Y"):
                         score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, user_won_rounds)
@@ -199,61 +197,61 @@ def score_cheat_mode():
                         score_computer = 0
                         total_draw = 0
                 else:
-                        print(Fore.GREEN + "Thank You For Playing!!!")
+                        print("Thank You For Playing!!!")
                         score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, user_won_rounds)
                         break
 
-        user = input(Fore.CYAN + "Enter Your Choice: ")
+        user = input("Enter Your Choice: ")
         user_choice = user.capitalize()
 
        
         if(user_choice == "E"):
           score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, user_won_rounds)
-          print(Fore.GREEN + "Thanks")
+          print("Thanks")
           break
 
           
 
         if(computer == user_choice):    
-            print(Fore.CYAN + f"You Choose {Fore.YELLOW}{yourdict[user_choice]} {Fore.MAGENTA}& {Fore.RED}Computer Choose {Fore.YELLOW}{yourdict[computer]}")
-            print(Fore.YELLOW + "Game is Draw")
+            print(f"You Choose {yourdict[user_choice]} & Computer Choose {yourdict[computer]}")
+            print("Game is Draw")
             total_draw += 1
         else:
             if(computer == "S") and (user_choice == "W"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
                 score_computer +=1
-                print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-                print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+                print(f"Your Score: {score_user}")
+                print(f"Computer Score: {score_computer}")
 
             elif(computer == "W") and (user_choice == "S"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
                 score_user +=1
-                print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-                print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+                print(f"Your Score: {score_user}")
+                print(f"Computer Score: {score_computer}")
 
             elif(computer == "G") and (user_choice == "S"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
                 score_computer += 1
-                print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-                print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+                print(f"Your Score: {score_user}")
+                print(f"Computer Score: {score_computer}")
 
             elif(computer == "S") and (user_choice == "G"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
                 score_user += 1
-                print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-                print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+                print(f"Your Score: {score_user}")
+                print(f"Computer Score: {score_computer}")
 
             elif(computer == "G") and (user_choice == "W"):
-                print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+                print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
                 score_user += 1 
-                print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-                print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+                print(f"Your Score: {score_user}")
+                print(f"Computer Score: {score_computer}")
 
             elif(computer == "W") and (user_choice == "G"):
-             print(Fore.RED + f"Computer choose {Fore.YELLOW}{yourdict[computer]} {Fore.MAGENTA}& {Fore.CYAN}You Choose: {Fore.YELLOW}{yourdict[user_choice]}")
+             print(f"Computer choose {yourdict[computer]} & You Choose {yourdict[user_choice]}")
              score_computer += 1
-             print(Fore.CYAN + f"Your Score: {Fore.YELLOW}{score_user}")
-             print(Fore.RED + f"Computer Score: {Fore.YELLOW}{score_computer}")
+             print(f"Your Score: {score_user}")
+             print(f"Computer Score: {score_computer}")
 
             elif("C" in user_choice):
                 is_cheat = True
@@ -265,7 +263,7 @@ def score_cheat_mode():
                 show_history()
 
             else:
-                print(Fore.YELLOW + "Something Went Wrong!")
+                print("Something Went Wrong!")
 
 # Save Logs For Score Mode Fucntion 
 
@@ -285,7 +283,7 @@ def score_logs_func(mode, score_user, score_computer, total_draw, total_rounds, 
 def show_history():
     with open("logs.txt", "r") as f:
         history = f.read()
-    print(Fore.YELLOW + history)
+    print(history)
 
     return history
 
@@ -294,23 +292,23 @@ def show_history():
 def main():
     while 1:
 
-        print(Fore.CYAN + "\t----->Main Menu<-----")
-        print(Fore.CYAN + "\"S\" For Snake, \"W\" For Water & \"G\" For Gun")
-        print(Fore.CYAN + "Choose Between 'S','W' & 'G'")
-        print(Fore.CYAN + "Press 'E' For Exit The Game")
-        print(Fore.CYAN + "Press 'M' For Back in Main Menu")
-        print(Fore.CYAN + "Press'H' For Show Game History ")
-        print(Fore.CYAN + "Choose Mode: ")
-        print(Fore.CYAN + "1. Normal Mode")
-        print(Fore.CYAN + "2. Score Mode")
-        print(Fore.CYAN + "Enter 1 For Normal Mode.")
-        print(Fore.CYAN + "Enter 2 For Score Mode")
+        print("\t----->Main Menu<-----")
+        print("\"S\" For Snake, \"W\" For Water & \"G\" For Gun")
+        print("Choose Between 'S','W' & 'G'")
+        print("Press 'E' For Exit The Game")
+        print("Press 'M' For Back in Main Menu")
+        print("Press'H' For Show Game History ")
+        print("Choose Mode: ")
+        print("1. Normal Mode")
+        print("2. Score Mode")
+        print("Enter 1 For Normal Mode.")
+        print("Enter 2 For Score Mode")
         
-        choose_mode = input(Fore.CYAN + "Enter The 1 OR 2: ").upper()
+        choose_mode = input("Enter The 1 OR 2: ").upper()
         
         if(choose_mode == "E"):
-            print(Fore.GREEN + "Thank You")
-            input(Fore.CYAN + "Press Any Key To Exit the Application.")
+            print("Thank You")
+            input("Press Any Key To Exit the Application.")
             break
         
         elif(choose_mode == "M"):
@@ -327,9 +325,9 @@ def main():
             elif(choose_mode1 == 2):
                 score_cheat_mode()
             else:
-                print(Fore.YELLOW + "Invalid Input! Please Enter 1 OR 2")
+                print("Invalid Input! Please Enter 1 OR 2")
         else:
-            print(Fore.YELLOW + "Something Went Wrong!")
+            print("Something Went Wrong!")
 
    
 main()
